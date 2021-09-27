@@ -1,0 +1,184 @@
+#!/usr/bin/env bash
+
+echo 'Updating the index.html file ...\n'
+
+# Domain
+if [[ -z "$DOMAIN" ]]
+then
+  echo "WARNING: No DOMAIN given, removing the domain meta data."
+  DOMAIN=''
+  echo "Removing the Meta Domain Data..."
+else
+  DOMAIN="<link rel=\"canonical\" href=\"https://$DOMAIN.com/\">"
+  echo "Updating the Meta Domain Data..."
+fi;
+echo "Updating Meta Domain Data to $DOMAIN..."
+sed -i "s~ENV_DOMAIN~$DOMAIN~" "$BASE_DIR/index.html"
+
+# Meta Description
+if [[ -z "$META_DESCRIPTION" ]]
+then
+  echo "WARNING: No Meta Description given, removing the meta description"
+  META_DESCRIPTION=''
+  echo "Removing the Meta Description..."
+else
+  META_DESCRIPTION="<meta name=\"description\" content=\"$META_DESCRIPTION\">"
+  echo "Updating the Meta Description..."
+fi;
+sed -i "s~ENV_META_DESCRIPTION~$META_DESCRIPTION~" "$BASE_DIR/index.html"
+
+# Meta Title
+if [[ -z "$META_TITLE" ]]
+then
+  echo "WARNING: No Meta Title given, removing the meta title."
+  META_TITLE=''
+  echo "Removing the Meta Title..."
+else
+  META_TITLE="meta name=\"og:title\" property=\"og:title\" content=\"$META_TITLE\">"
+  echo "Updating the Meta Title..."
+fi;
+sed -i "s~ENV_META_TITLE~$META_TITLE~" "$BASE_DIR/index.html"
+
+# Page title
+if [[ -z "$TITLE" ]]
+then
+  echo "WARNING: No TITLE given, using the default one"
+  TITLE="<title>TEST TITLE</title>"
+else
+  TITLE="<title>$TITLE</title>"
+  echo "Updating the TITLE..."
+fi;
+echo "Updating title to $TITLE..."
+sed -i "s~ENV_TITLE~$TITLE~" "$BASE_DIR/index.html"
+
+# Subtitle
+if [[ -z "$SUB_TITLE" ]]
+then
+  echo "WARNING: No SUB_TITLE given, using the default one"
+  SUB_TITLE="<h1>This is a sub title.</h1>"
+else
+  SUB_TITLE="<h1>$SUB_TITLE</h1>"
+  echo "Updating SUB TITLE..."
+fi;
+echo "Updating the sub-title with $SUB_TITLE..."
+sed -i "s~ENV_SUB_TITLE~$SUB_TITLE~" "$BASE_DIR/index.html"
+
+# About me
+if [[ -z "$ABOUT_ME" ]]
+then
+  echo "WARNING: No ABOUT ME given, removing the about me section"
+  ABOUT_ME=''
+else
+  ABOUT_ME="<h3>About me</h3><p class=\"paragraph\">$ABOUT_ME<br></p>"
+  echo "Updating the About Me section..."
+fi;
+sed -i "s~ENV_ABOUT_ME~$ABOUT_ME~" "$BASE_DIR/index.html"
+
+# Profile Image Url
+if [[ -z "$PROFILE_IMG_URL" ]]
+then
+  echo "WARNING: No Profile Image URL given, using the default one."
+  PROFILE_IMAGE=''
+else
+  PROFILE_IMAGE="<img src="$PROFILE_IMG_URL">"
+  echo "Updating the Profile Image Url..."
+fi;
+sed -i "s~ENV_PROFILE_IMAGE~$PROFILE_IMAGE~" "$BASE_DIR/index.html"
+
+# Youtube Video
+if [[ -z "$YOUTUBE_VIDEO_URL" ]]
+then
+  echo "WARNING: No Youtube Video URL given, using the default one."
+  YOUTUBE_VIDEO='https://www.youtube.com/embed/VYOjWnS4cMY'
+else
+  YOUTUBE_VIDEO="<iframe class="video" width="560" height="315" src="$YOUTUBE_VIDEO_URL" frameborder="0" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>"
+  echo "Updating the Youtube Video..."
+fi;
+sed -i "s~ENV_YOUTUBE_VIDEO~$YOUTUBE_VIDEO~" "$BASE_DIR/index.html"
+
+# Youtube button
+if [[ -z "$YOUTUBE_URL" ]]
+then
+  echo "WARNING: No Youtube URL given, removing the button."
+  YOUTUBE_BUTTON=''
+  echo "Removing the Youtube button..."
+else
+  YOUTUBE_BUTTON="<a href="$YOUTUBE_URL" class=\"button fa fa-youtube\"> YOUTUBE</a></br>"
+  echo "Updating the Youtube button..."
+fi;
+sed -i "s~ENV_YOUTUBE_BUTTON~$YOUTUBE_BUTTON~" "$BASE_DIR/index.html"
+
+# Twitter button
+if [[ -z "$TWITTER_URL" ]]
+then
+  echo "WARNING: No Twitter URL given, removing the button."
+  TWITTER_BUTTON=''
+  echo "Removing the Twitter button..."
+else
+  TWITTER_BUTTON="<a href=\"$TWITTER_URL\" class=\"button fa fa-twitter\"> TWITTER</a></br>"
+  echo "Updating the Twitter button..."
+fi;
+sed -i "s~ENV_TWITTER_BUTTON~$TWITTER_BUTTON~" "$BASE_DIR/index.html"
+
+# Facebook button
+if [[ -z "$FACEBOOK_URL" ]]
+then
+  echo "WARNING: No Facebook URL given, removing the button."
+  FACEBOOK_BUTTON=''
+  echo "Removing the Facebook button..."
+else
+  FACEBOOK_BUTTON="<a href=\"$FACEBOOK_URL\" class=\"button fa fa-facebook-square\"> FACEBOOK</a></br>"
+  echo "Updating the Facebook button..."
+fi;
+sed -i "s~ENV_FACEBOOK_BUTTON~$FACEBOOK_BUTTON~" "$BASE_DIR/index.html"
+
+# Instagram button
+if [[ -z "$INSTAGRAM_URL" ]]
+then
+  echo "WARNING: No Instagram URL given, removing the button."
+  INSTAGRAM_BUTTON=''
+  echo "Removing the Instagram button..."
+else
+  INSTAGRAM_BUTTON="<a href=\"$INSTAGRAM_URL\" class=\"button fa fa-instagram\"> INSTAGRAM</a></br>"
+  echo "Updating the Instagram button..."
+fi;
+sed -i "s~ENV_INSTAGRAM_BUTTON~$INSTAGRAM_BUTTON~" "$BASE_DIR/index.html"
+
+# SnapChat button
+if [[ -z "$SNAPCHAT_URL" ]]
+then
+  echo "WARNING: No SnapChat URL given, removing the button."
+  SNAPCHAT_BUTTON=''
+  echo "Removing the SnapChat button..."
+else
+  SNAPCHAT_BUTTON="<a href="$SNAPCHAT_URL" class=\"button fa fa-snapchat\"> SNAPCHAT</a></br>"
+  echo "Updating the SnapChat button..."
+fi;
+sed -i "s~ENV_SNAPCHAT_BUTTON~$SNAPCHAT_BUTTON~" "$BASE_DIR/index.html"
+
+# Github button
+if [[ -z "$GITHUB_URL" ]]
+then
+  echo "WARNING: No Github URL given, removing the button."
+  GITHUB_BUTTON=''
+  echo "Removing the Github button..."
+else
+  GITHUB_BUTTON="<a href=\"$GITHUB_URL\" class=\"button fa fa-github\"> GITHUB</a></br>"
+  echo "Updating the Github button..."
+fi;
+sed -i "s~ENV_GITHUB_BUTTON~$GITHUB_BUTTON~" "$BASE_DIR/index.html"
+
+# Email button
+if [[ -z "$EMAIL" ]]
+then
+  echo "WARNING: No Email address given, removing the button."
+  EMAIL_BUTTON=''
+  echo "Remving the Email button..."
+else
+  EMAIL_BUTTON="<a href=\"mailto:$EMAIL\" class=\"button fa fa-envelope-o\"> EMAIL</a></br>"
+  echo "Updating the Email button..."
+fi;
+sed -i "s~ENV_EMAIL_BUTTON~$EMAIL_BUTTON~" "$BASE_DIR/index.html"
+
+echo "Starting Nginx..."
+nginx -g "daemon off;"
