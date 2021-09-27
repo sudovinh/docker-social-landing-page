@@ -23,6 +23,7 @@ social landing page:
 | GITHUB_URL | Github profile button url | `none` | GITHUB_URL="https://www.github.com/iamcool"
 | EMAIL  | Email to be used for the email button | `none` | EMAIL="iamcool@awesome-website.com"
 
+# Getting Started
 ## Build docker image locally
 ```bash
 docker build -t sociallandingpage .
@@ -31,10 +32,10 @@ docker build -t sociallandingpage .
 ## Run locally
 ```bash
 docker run --rm -d -p 80:80 \
--e DOMAIN='notlinktree-sudovinh' \
+-e DOMAIN='sudovinh' \
 -e META_DESCRIPTION='This is sudovinh notlinktree social landing page.' \
--e META_TITLE='Notlinktree-sudovinh' \
--e TITLE='Notlinktree-sudovinh' \
+-e META_TITLE='sudovinh' \
+-e TITLE='This is a cool website' \
 -e SUB_TITLE='Welcome non-existing fans!' \
 -e ABOUT_ME='Sudovinh is an super non-micro influencer' \
 -e PROFILE_IMG_URL='https://pbs.twimg.com/profile_images/1274630142405427200/ethb5B1m_400x400.jpg' \
@@ -54,3 +55,6 @@ Go to your browser then type the following in the url:
 ```bash
 localhost:80
 ```
+
+## Example
+www.sudovinh.com
