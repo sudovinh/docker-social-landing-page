@@ -1,4 +1,4 @@
-![Dockerfile Build Test](https://github.com/sudovinh/docker-social-landing-page/actions/workflows/docker-test/badge.svg)
+![Dockerfile Build Test](https://github.com/sudovinh/docker-social-landing-page/actions/workflows/docker-push.yml/badge.svg)
 
 # Docker - Social Landing Page
 Docker container running nginx website that is a social media landing page similar to linktree, ContactInBio, Shorby, Lnk, Tab, blah, etc (there is so many out there).
@@ -28,7 +28,7 @@ social landing page:
 # Getting Started
 ## Build docker image locally
 ```bash
-docker build -t sociallandingpage .
+docker build -t local-social-landing-page .
 ```
 
 ## Run locally
@@ -49,7 +49,7 @@ docker run --rm -d -p 80:80 \
 -e SNAPCHAT_URL='https://www.snapchat.com/add/djvinhii' \
 -e GITHUB_URL='https://github.com/sudovinh' \
 -e EMAIL='thisiscool@sudovinh.com' \
---name testpage sociallandingpage:latest
+--name testpage local-social-landing-page:latest
 ```
 
 ## Accessing the page locally
@@ -60,3 +60,8 @@ localhost:80
 
 ## Example
 www.sudovinh.com
+
+# CI/CD Docker Image
+Using github actions to build `Dockerfile` and test if the container can be curled after running.
+- dockerhub: https://hub.docker.com/r/sudovinh/social-landing-page
+- docker pull image command: `docker pull sudovinh/social-landing-page`

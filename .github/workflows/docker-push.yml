@@ -1,0 +1,37 @@
+name: Docker build, test, and push
+
+on:
+  push:
+    branches:
+      - 'master'
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+     - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+     - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
+     - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+     - uses: actions/checkout@v2
+     - name: Build Docker image 
+       run: docker build -t docker-social_landing_page .
+     - name: Run Docker
+       run: docker run -d -p 80:80 -e DOMAIN='sudovinh' -e META_DESCRIPTION='This is sudovinh notlinktree social landing page.' -e META_TITLE='sudovinh' -e TITLE='This is a cool website' -e SUB_TITLE='Welcome non-existing fans!' -e ABOUT_ME='Sudovinh is an super non-micro influencer' -e PROFILE_IMG_URL='https://pbs.twimg.com/profile_images/1274630142405427200/ethb5B1m_400x400.jpg' -e YOUTUBE_VIDEO_URL='https://www.youtube.com/embed/7zil-zsn-a4?autoplay=1&mute=1' -e YOUTUBE_URL='https://www.youtube.com/channel/UCdupcYF7zU4SlK7S1sI1vvQ' -e TWITTER_URL='https://twitter.com/sudovinh' -e FACEBOOK_URL='https://www.facebook.com/sudovinh/' -e INSTAGRAM_URL='https://www.instagram.com/sudovinh/' -e SNAPCHAT_URL='https://www.snapchat.com/add/djvinhii' -e GITHUB_URL='https://github.com/sudovinh' -e EMAIL='thisiscool@sudovinh.com' --name testpage docker-social_landing_page
+     - name: docker ps
+       run: docker ps -a
+     - name: Check http status code of local site
+       uses: jtalk/url-health-check-action@v2
+       with:
+        url: http://localhost:80
+        follow-redirect: false
+        max-attempts: 3
+        retry-delay: 5s
+     - name: Set up Docker Build
+       uses: docker/setup-buildx-action@v1
+     - name: Build and push
+       uses: docker/build-push-action@v2
+       with:
+        context: ./
+        file: ./Dockerfile
+        push: true
+        tags: ${{ secrets.DOCKER_HUB_USERNAME }}/social-landing-page:latest
