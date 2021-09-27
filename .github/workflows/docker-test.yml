@@ -17,7 +17,7 @@ jobs:
      - name: Curl local host for http code
        env:
         HTTP_RESPONSE: ${{ curl -o /dev/null -s -w "%{http_code}\n" http://localhost }}
+       run: echo "Localhost curl returned ${{ HTTP_RESPONSE }}"
      - name: Fail if http code is 200
        if: ${{ HTTP_RESPONSE }} != 200
        run: exit 1
-
