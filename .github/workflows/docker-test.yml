@@ -19,7 +19,5 @@ jobs:
         HTTP_RESPONSE: ${{ curl -o /dev/null -s -w "%{http_code}\n" http://localhost }}
      - name: Fail if http code is 200
        if: ${{ HTTP_RESPONSE }} != 200
-       uses: actions/github-script@v3
-       with:
-        script: |
-          core.setFailed('Can not curl localhost port 80.')
+       run: exit 1
+
