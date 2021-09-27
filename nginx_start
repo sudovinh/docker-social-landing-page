@@ -34,7 +34,7 @@ then
   META_TITLE=''
   echo "Removing the Meta Title..."
 else
-  META_TITLE="meta name=\"og:title\" property=\"og:title\" content=\"$META_TITLE\">"
+  META_TITLE="<meta name=\"og:title\" property=\"og:title\" content=\"$META_TITLE\">"
   echo "Updating the Meta Title..."
 fi;
 sed -i "s~ENV_META_TITLE~$META_TITLE~" "$BASE_DIR/index.html"
