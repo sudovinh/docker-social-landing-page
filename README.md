@@ -1,3 +1,5 @@
+![Dockerfile Build Test](https://github.com/sudovinh/docker-social-landing-page/actions/workflows/docker-test/badge.svg)
+
 # Docker - Social Landing Page
 Docker container running nginx website that is a social media landing page similar to linktree, ContactInBio, Shorby, Lnk, Tab, blah, etc (there is so many out there).
 
