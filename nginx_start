@@ -106,7 +106,7 @@ else
   TWITCH_BUTTON="<a href="$TWITCH_URL" class=\"button fa fa-twitch\"> TWITCH</a></br>"
   echo "Updating the Twitch button..."
 fi;
-sed -i "s~ENV_YOUTUBE_BUTTON~$TWITCH_BUTTON~" "$BASE_DIR/index.html"
+sed -i "s~ENV_TWITCH_BUTTON~$TWITCH_BUTTON~" "$BASE_DIR/index.html"
 
 # Youtube Video
 if [[ -z "$YOUTUBE_VIDEO_URL" ]]
