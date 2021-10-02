@@ -51,6 +51,17 @@ fi;
 echo "Updating title to $TITLE..."
 sed -i "s~ENV_TITLE~$TITLE~" "$BASE_DIR/index.html"
 
+if [[ -z "$FAVICON_IMG_URL" ]]
+then
+  echo "WARNING: No Favicon url given, removing the domain meta data."
+  FAVICON_IMG=''
+  echo "Removing the Favicon url..."
+else
+  FAVICON_IMG="<link rel=\"icon\" type=\"image/png\" href=\"$FAVICON_IMG_URL\">"
+  echo "Updating the Favicon url..."
+fi;
+sed -i "s~ENV_FAVICON_IMG~$FAVICON_IMG~" "$BASE_DIR/index.html"
+
 # Subtitle
 if [[ -z "$SUB_TITLE" ]]
 then
@@ -84,6 +95,18 @@ else
   echo "Updating the Profile Image Url..."
 fi;
 sed -i "s~ENV_PROFILE_IMAGE~$PROFILE_IMAGE~" "$BASE_DIR/index.html"
+
+# Twitch button
+if [[ -z "$TWITCH_URL" ]]
+then
+  echo "WARNING: No Twitch URL given, removing the button."
+  TWITCH_BUTTON=''
+  echo "Removing the Twitch button..."
+else
+  TWITCH_BUTTON="<a href="$TWITCH_URL" class=\"button fa fa-twitch\"> TWITCH</a></br>"
+  echo "Updating the Twitch button..."
+fi;
+sed -i "s~ENV_YOUTUBE_BUTTON~$TWITCH_BUTTON~" "$BASE_DIR/index.html"
 
 # Youtube Video
 if [[ -z "$YOUTUBE_VIDEO_URL" ]]
