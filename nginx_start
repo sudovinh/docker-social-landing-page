@@ -108,6 +108,18 @@ else
 fi;
 sed -i "s~ENV_TWITCH_BUTTON~$TWITCH_BUTTON~" "$BASE_DIR/index.html"
 
+# Extra button
+if [[ -z "$EXTRA_BUTTON_NAME" || -z "$EXTRA_URL" || -z "$EXTRA_FONT_ICON" ]]
+then
+  echo "WARNING: No Extra button Name, icon, URL given, removing the button."
+  EXTRA_BUTTON=''
+  echo "Removing the Extra button..."
+else
+  EXTRA_BUTTON="<a href="$EXTRA_URL" class=\"button fa $EXTRA_FONT_ICON\"> $EXTRA_BUTTON_NAME</a></br>"
+  echo "Updating the Extra button..."
+fi;
+sed -i "s~ENV_EXTRA_BUTTON~$EXTRA_BUTTON~" "$BASE_DIR/index.html"
+
 # Youtube Video
 if [[ -z "$YOUTUBE_VIDEO_URL" ]]
 then
